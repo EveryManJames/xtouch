@@ -8,7 +8,11 @@
 #include "xtouch/bblp.h"
 #include "xtouch/globals.h"
 #include "xtouch/filesystem.h"
+#if defined(__XTOUCH_SCREEN_5__)
+#include "ui5/ui.h"
+#else
 #include "ui/ui.h"
+#endif
 #include "xtouch/sdcard.h"
 #include "xtouch/hms.h"
 

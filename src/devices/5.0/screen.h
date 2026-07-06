@@ -45,7 +45,7 @@ Arduino_RPi_DPI_RGBPanel *gfx = new Arduino_RPi_DPI_RGBPanel(
 static lv_disp_draw_buf_t draw_buf;
 static lv_color_t *xtouch_lvbuf = NULL;
 
-#include "ui/ui.h"
+#include "ui5/ui.h"
 #include "touch.h"
 #include "xtouch/globals.h"
 

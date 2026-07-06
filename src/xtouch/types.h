@@ -158,6 +158,8 @@ extern "C"
         int xTouchTFTOFFValue;
         bool xTouchWakeOnPrint;
         int currentScreenIndex;
+        uint8_t xTouchThemeAccent; // 0..6 accent preset (5" UI)
+        bool xTouchThemeDark;      // dark (true) / light (false) appearance (5" UI)
     } XTouchConfig;
 
     XTouchConfig xTouchConfig;

@@ -13,6 +13,8 @@ void xtouch_settings_save(bool onlyRoot = false)
     doc["chamberTemp"] = xTouchConfig.xTouchChamberSensorEnabled;
     doc["auxFan"] = xTouchConfig.xTouchAuxFanEnabled;
     doc["chamberFan"] = xTouchConfig.xTouchChamberFanEnabled;
+    doc["themeAccent"] = xTouchConfig.xTouchThemeAccent;
+    doc["themeDark"] = xTouchConfig.xTouchThemeDark;
 
     xtouch_filesystem_writeJson(SD, xtouch_paths_settings, doc);
 }
@@ -31,6 +33,8 @@ void xtouch_settings_loadSettings()
         xTouchConfig.xTouchChamberSensorEnabled = false;
         xTouchConfig.xTouchAuxFanEnabled = false;
         xTouchConfig.xTouchChamberFanEnabled = false;
+        xTouchConfig.xTouchThemeAccent = 0;
+        xTouchConfig.xTouchThemeDark = true;
         xtouch_settings_save(true);
     }
 
@@ -45,6 +49,8 @@ void xtouch_settings_loadSettings()
     xTouchConfig.xTouchChamberSensorEnabled = settings.containsKey("chamberTemp") ? settings["chamberTemp"].as<bool>() : false;
     xTouchConfig.xTouchAuxFanEnabled = settings.containsKey("auxFan") ? settings["auxFan"].as<bool>() : false;
     xTouchConfig.xTouchChamberFanEnabled = settings.containsKey("chamberFan") ? settings["chamberFan"].as<bool>() : false;
+    xTouchConfig.xTouchThemeAccent = settings.containsKey("themeAccent") ? settings["themeAccent"].as<uint8_t>() : 0;
+    xTouchConfig.xTouchThemeDark = settings.containsKey("themeDark") ? settings["themeDark"].as<bool>() : true;
 
     xtouch_screen_setupTFTFlip();
     xtouch_screen_setBrightness(xTouchConfig.xTouchBacklightLevel);
