@@ -47,6 +47,12 @@ void xtouch_screen_setBrightness(byte brightness)
     xtouch_screen_ledcAnalogWrite(LEDC_CHANNEL_0, brightness);
 }
 
+// SD begin hook (see sdcard.h). The 2.8" board uses the default VSPI pins.
+bool xtouch_screen_sdBegin()
+{
+    return SD.begin();
+}
+
 void xtouch_screen_setBackLedOff()
 {
     pinMode(4, OUTPUT);
