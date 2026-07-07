@@ -31,6 +31,10 @@
 #include "xtouch/connection.h"
 #include "xtouch/coldboot.h"
 
+#if defined(__XTOUCH_SCREEN_5__)
+#include "xtouch/led.h"
+#endif
+
 void xtouch_intro_show(void)
 {
   ui_introScreen_screen_init();
@@ -70,6 +74,10 @@ void setup()
 
   xtouch_mqtt_setup();
   xtouch_chamber_timer_init();
+
+#if defined(__XTOUCH_SCREEN_5__)
+  xtouch_led_setup();
+#endif
 }
 
 void loop()
@@ -77,4 +85,7 @@ void loop()
   lv_timer_handler();
   lv_task_handler();
   xtouch_mqtt_loop();
+#if defined(__XTOUCH_SCREEN_5__)
+  xtouch_led_loop();
+#endif
 }

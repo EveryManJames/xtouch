@@ -3,7 +3,7 @@
 
 void xtouch_settings_save(bool onlyRoot = false)
 {
-    DynamicJsonDocument doc(256);
+    DynamicJsonDocument doc(512);
     doc["backlight"] = xTouchConfig.xTouchBacklightLevel;
     doc["tftOff"] = xTouchConfig.xTouchTFTOFFValue;
     doc["tftInvert"] = xTouchConfig.xTouchTFTInvert;
@@ -15,6 +15,12 @@ void xtouch_settings_save(bool onlyRoot = false)
     doc["chamberFan"] = xTouchConfig.xTouchChamberFanEnabled;
     doc["themeAccent"] = xTouchConfig.xTouchThemeAccent;
     doc["themeDark"] = xTouchConfig.xTouchThemeDark;
+    doc["ledEnabled"] = xTouchConfig.xTouchLedEnabled;
+    doc["ledGpio"] = xTouchConfig.xTouchLedGpio;
+    doc["ledCount"] = xTouchConfig.xTouchLedCount;
+    doc["ledBrightness"] = xTouchConfig.xTouchLedBrightness;
+    doc["ledMode"] = xTouchConfig.xTouchLedMode;
+    doc["ledColor"] = xTouchConfig.xTouchLedColor;
 
     xtouch_filesystem_writeJson(SD, xtouch_paths_settings, doc);
 }
@@ -35,6 +41,12 @@ void xtouch_settings_loadSettings()
         xTouchConfig.xTouchChamberFanEnabled = false;
         xTouchConfig.xTouchThemeAccent = 0;
         xTouchConfig.xTouchThemeDark = true;
+        xTouchConfig.xTouchLedEnabled = false;
+        xTouchConfig.xTouchLedGpio = 18;
+        xTouchConfig.xTouchLedCount = 12;
+        xTouchConfig.xTouchLedBrightness = 128;
+        xTouchConfig.xTouchLedMode = 4; // status-sync
+        xTouchConfig.xTouchLedColor = 0x35D0BA;
         xtouch_settings_save(true);
     }
 
@@ -51,6 +63,12 @@ void xtouch_settings_loadSettings()
     xTouchConfig.xTouchChamberFanEnabled = settings.containsKey("chamberFan") ? settings["chamberFan"].as<bool>() : false;
     xTouchConfig.xTouchThemeAccent = settings.containsKey("themeAccent") ? settings["themeAccent"].as<uint8_t>() : 0;
     xTouchConfig.xTouchThemeDark = settings.containsKey("themeDark") ? settings["themeDark"].as<bool>() : true;
+    xTouchConfig.xTouchLedEnabled = settings.containsKey("ledEnabled") ? settings["ledEnabled"].as<bool>() : false;
+    xTouchConfig.xTouchLedGpio = settings.containsKey("ledGpio") ? settings["ledGpio"].as<uint8_t>() : 18;
+    xTouchConfig.xTouchLedCount = settings.containsKey("ledCount") ? settings["ledCount"].as<uint16_t>() : 12;
+    xTouchConfig.xTouchLedBrightness = settings.containsKey("ledBrightness") ? settings["ledBrightness"].as<uint8_t>() : 128;
+    xTouchConfig.xTouchLedMode = settings.containsKey("ledMode") ? settings["ledMode"].as<uint8_t>() : 4;
+    xTouchConfig.xTouchLedColor = settings.containsKey("ledColor") ? settings["ledColor"].as<uint32_t>() : 0x35D0BA;
 
     xtouch_screen_setupTFTFlip();
     xtouch_screen_setBrightness(xTouchConfig.xTouchBacklightLevel);
