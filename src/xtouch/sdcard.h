@@ -6,9 +6,13 @@
 #include <ArduinoJson.h>
 #include <Arduino.h>
 
+// Implemented per-device in devices/<board>/screen.h (included later in the
+// single translation unit). Lets each board bring up SD on its own SPI pins.
+bool xtouch_screen_sdBegin();
+
 bool xtouch_sdcard_setup()
 {
-    if (!SD.begin())
+    if (!xtouch_screen_sdBegin())
     {
         lv_label_set_text(introScreenCaption, LV_SYMBOL_SD_CARD " INSERT SD CARD");
         lv_obj_set_style_text_color(introScreenCaption, lv_color_hex(0xFF0000), LV_PART_MAIN | LV_STATE_DEFAULT);

@@ -158,6 +158,15 @@ extern "C"
         int xTouchTFTOFFValue;
         bool xTouchWakeOnPrint;
         int currentScreenIndex;
+        uint8_t xTouchThemeAccent; // 0..6 accent preset (5" UI)
+        bool xTouchThemeDark;      // dark (true) / light (false) appearance (5" UI)
+        // User-attached addressable RGB strip (WS2812/NeoPixel) on a spare GPIO (5" build)
+        bool xTouchLedEnabled;
+        uint8_t xTouchLedGpio;     // data pin (JC8048W550 free pins: 17 or 18)
+        uint16_t xTouchLedCount;   // number of LEDs
+        uint8_t xTouchLedBrightness;
+        uint8_t xTouchLedMode;     // 0 off, 1 solid, 2 breathe, 3 progress, 4 status-sync
+        uint32_t xTouchLedColor;   // packed 0xRRGGBB for solid/breathe
     } XTouchConfig;
 
     XTouchConfig xTouchConfig;

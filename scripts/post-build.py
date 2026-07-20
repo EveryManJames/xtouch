@@ -151,6 +151,14 @@ def post_build_action(source, target, env):
         version_data = json.load(version_file)
         version_value = version_data.get("version", "UNKNOWN")
 
+    # The OTA/WebUSB packaging below (esptool merge_bin --flash_size 4MB, copies
+    # into ../xtouch-bin) is specific to the 2.8" esp32dev release pipeline.
+    # Skip it for other envs (e.g. the 5" jc8048w550 S3 build) and just bump.
+    if env["PIOENV"] != "esp32dev":
+        post_build_increment_semver("version.json", bump_type="patch")
+        print(f"XTOUCH POSTBUILD ({env['PIOENV']}): skipped xtouch-bin packaging")
+        return
+
     delete_bin_files("../xtouch-bin/ota")
     delete_bin_files("../xtouch-bin/webusb")
     post_build_manifest(version_value)

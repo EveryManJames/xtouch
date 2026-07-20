@@ -8,12 +8,18 @@
 #include "xtouch/bblp.h"
 #include "xtouch/globals.h"
 #include "xtouch/filesystem.h"
+#if defined(__XTOUCH_SCREEN_5__)
+#include "ui5/ui.h"
+#else
 #include "ui/ui.h"
+#endif
 #include "xtouch/sdcard.h"
 #include "xtouch/hms.h"
 
 #if defined(__XTOUCH_SCREEN_28__)
 #include "devices/2.8/screen.h"
+#elif defined(__XTOUCH_SCREEN_5__)
+#include "devices/5.0/screen.h"
 #endif
 
 #include "xtouch/settings.h"
@@ -24,6 +30,10 @@
 #include "xtouch/events.h"
 #include "xtouch/connection.h"
 #include "xtouch/coldboot.h"
+
+#if defined(__XTOUCH_SCREEN_5__)
+#include "xtouch/led.h"
+#endif
 
 void xtouch_intro_show(void)
 {
@@ -64,6 +74,10 @@ void setup()
 
   xtouch_mqtt_setup();
   xtouch_chamber_timer_init();
+
+#if defined(__XTOUCH_SCREEN_5__)
+  xtouch_led_setup();
+#endif
 }
 
 void loop()
@@ -71,4 +85,7 @@ void loop()
   lv_timer_handler();
   lv_task_handler();
   xtouch_mqtt_loop();
+#if defined(__XTOUCH_SCREEN_5__)
+  xtouch_led_loop();
+#endif
 }
