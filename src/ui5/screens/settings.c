@@ -1,4 +1,4 @@
-#include "ui.h"
+#include "../ui.h"
 
 // Defined in settings.h (main TU); forward-declared for the simple flag toggles
 // that don't need a hardware side effect.

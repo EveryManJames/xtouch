@@ -66,7 +66,6 @@ static void ui5_build_nav(lv_obj_t *root, int active)
     lv_obj_set_style_radius(logo, 10, 0);
     lv_obj_set_style_bg_color(logo, ui_theme_accent(), 0);
     lv_obj_set_style_bg_opa(logo, LV_OPA_COVER, 0);
-    lv_obj_set_style_margin_bottom(logo, 6, 0);
     lv_obj_t *logoTxt = lv_label_create(logo);
     lv_label_set_text(logoTxt, "x");
     lv_obj_set_style_text_color(logoTxt, ui_theme_on_accent(), 0);

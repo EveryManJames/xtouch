@@ -1,4 +1,4 @@
-#include "ui.h"
+#include "../ui.h"
 
 // Boot / status screen. The boot sequence (coldboot, connection, firmware, mqtt,
 // sdcard) writes progress text into introScreenCaption, so this screen must

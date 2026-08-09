@@ -1,4 +1,4 @@
-#include "ui.h"
+#include "../ui.h"
 
 // Accessories: a working "Lighting" panel for a user-attached WS2812/NeoPixel
 // strip (data on a spare GPIO, default 18), plus a placeholder for the BIQU

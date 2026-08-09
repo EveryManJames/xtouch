@@ -1,4 +1,4 @@
-#include "ui.h"
+#include "../ui.h"
 
 // Jog pad. Each direction sets the active axis on the shared controlMode global
 // (read by the device command layer) and then sends the move command. Axis/step
@@ -61,7 +61,6 @@ void ui_controlScreen_screen_init(void)
     lv_obj_set_size(pad, 254, LV_SIZE_CONTENT);
     lv_obj_set_flex_flow(pad, LV_FLEX_FLOW_ROW);
     lv_obj_set_flex_align(pad, LV_FLEX_ALIGN_CENTER, LV_FLEX_ALIGN_CENTER, LV_FLEX_ALIGN_CENTER);
-    lv_obj_set_flex_track_place(pad, LV_FLEX_ALIGN_CENTER);
     lv_obj_set_width(pad, 254);
     lv_obj_set_style_pad_all(pad, 0, 0);
     lv_obj_set_style_pad_row(pad, 8, 0);

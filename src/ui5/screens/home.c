@@ -1,4 +1,4 @@
-#include "ui.h"
+#include "../ui.h"
 
 // ---- live-bound widgets (reassigned each time the screen is rebuilt) ----
 static lv_obj_t *lblNozzle, *lblBed, *lblChamber, *swLight;
